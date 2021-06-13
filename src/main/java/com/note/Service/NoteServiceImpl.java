@@ -11,15 +11,23 @@ public class NoteServiceImpl implements NoteService {
 
     @Autowired
     private NoteRepository noteRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    /**************** EKSİK KALDI KALANI YARINA İNŞ **********************/
 
     @Override
     public Note addNote(Note note, long id){
+        Category category = categoryRepository.findById(id).orElse(null);
         return noteRepository.save(note);
     }
 
     @Override
     public Note editNote(Note note, long id) {
-        return null;
+        Note existingNote = noteRepository.findById(id).orElse(null);
+        existingNote.setTitle(note.getTitle());
+        existingNote.setContent(note.getContent());
+        return noteRepository.save(existingNote);
     }
 
     @Override
@@ -29,6 +37,6 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Note findNote(long id) {
-        return null;
+        return noteRepository.findById(id).orElse(null);
     }
 }

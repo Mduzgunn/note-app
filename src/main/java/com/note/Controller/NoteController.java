@@ -16,5 +16,18 @@ public class NoteController {
         return noteService.addNote(note, id);
     }
 
+    @PutMapping("/editNote/{id}")
+    Note editNote(@RequestBody Note note, @PathVariable long id){
+        return noteService.editNote(note, id);
+    }
 
+    @DeleteMapping("/deleteNote/{id}")
+    void deleteNote(@PathVariable long id) {
+        noteService.deleteNote(id);
+    }
+
+    @GetMapping("/findNote/{id}")
+    Note findNote(@PathVariable long id) {
+        return noteService.findNote(id);
+    }
 }
