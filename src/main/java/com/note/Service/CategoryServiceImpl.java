@@ -3,11 +3,15 @@ package com.note.Service;
 import com.note.Entity.Category;
 import com.note.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional
+@Component
 public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private CategoryRepository categoryRepository;
@@ -35,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<Category> findCategorie() {
+    public List<Category> findCategories() {
         List<Category> categories= categoryRepository.findAll();
         categories=categories.stream().sorted(Comparator.comparing(Category::getName).reversed()).collect(Collectors.toList());
         return categories;

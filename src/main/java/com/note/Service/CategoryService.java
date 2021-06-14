@@ -9,5 +9,5 @@ public interface CategoryService {
     Category editCategory(Category category, long id);
     void deleteCategory(long id);
     Category findCategory(long id);
-    List<Category> findCategorie();
+    List<Category> findCategories();
 }

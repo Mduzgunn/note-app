@@ -1,7 +1,6 @@
 package com.note.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Locale;
 
 @Entity
 @Table(name = "note")

@@ -4,6 +4,7 @@ package com.note.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "category")
@@ -15,7 +16,7 @@ public class Category {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "categpry", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     List<Note> notes;
 
     public Category(){
@@ -52,5 +53,14 @@ public class Category {
         this.notes = notes;
     }
 
+
+
+    public void addNote(Note note) {
+        if (getNotes() == null) {
+            this.notes = new ArrayList<>();
+        }
+        getNotes().add(note);
+        note.setCategory(this);
+    }
 
 }
